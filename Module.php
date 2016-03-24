@@ -78,6 +78,9 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
+        if (!Yii::$app->user->isGuest) {
+            Yii::$app->language=Yii::$app->user->identity->language;
+        }
         if (!isset(Yii::$app->i18n->translations['rbac-admin'])) {
             Yii::$app->i18n->translations['rbac-admin'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
